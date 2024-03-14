@@ -73,7 +73,10 @@ class FingerprintGenerator:
     def initialize_fingerprints(self) -> None:
         dir_path = os.path.dirname(os.path.realpath(__file__))
 
-        with lzma.open(os.path.join(dir_path, "fingerprints.json.xz"), 'rb') as f:
+        # Corrected path construction
+        file_path = os.path.join(dir_path, "fingerprints.json.xz")
+
+        with lzma.open(file_path, 'rb') as f:
             json_data = f.read()
 
         self.fingerprints = orjson.loads(json_data)
